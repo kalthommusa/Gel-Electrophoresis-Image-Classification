@@ -21,31 +21,36 @@ By considering these factors, the project aims to provide a comprehensive analys
 * 3 pretrained model architectures:
 
   	1- ResNet18
+
     2- VGG16
+    
     3- MobileNetV3
 
 * 2 classifier head architectures for each pretrained model:
 
    1- Single linear layer
+
    2- Multiple linear layers
 
 * 2 optimization algorithms for each classifier head/pretrained model combination:
 
   1- Adam
+
   2- SGD
 
 * 2 hardware types for each configuration:
 
   1- CPU
+
   2- TPU
 
 Breakdown by model:
 
 * ResNet18
-  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+  ** 8 models (2 classifier heads x 2 optimizers x 2 hardware)
 
 * VGG16
-  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+  ** 8 models (2 classifier heads x 2 optimizers x 2 hardware)
 
 * MobileNetV3
-  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+  ** 8 models (2 classifier heads x 2 optimizers x 2 hardware)
