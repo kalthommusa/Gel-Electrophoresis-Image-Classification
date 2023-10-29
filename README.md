@@ -23,7 +23,7 @@ By considering these factors, the project aims to provide a comprehensive analys
   	1- ResNet18
 
     2- VGG16
-    
+
     3- MobileNetV3
 
 * 2 classifier head architectures for each pretrained model:
@@ -44,13 +44,16 @@ By considering these factors, the project aims to provide a comprehensive analys
 
   2- TPU
 
-Breakdown by model:
+### Breakdown by model:
 
 * ResNet18
-  ** 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+
+  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
 
 * VGG16
-  ** 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+
+  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
 
 * MobileNetV3
-  ** 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+
+  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
