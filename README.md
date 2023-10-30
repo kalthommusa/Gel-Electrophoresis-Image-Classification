@@ -28,7 +28,7 @@ The purpose of this project is to investigate and compare the performance of dif
 
 * Training and evaluation results for each model are stored in a results.csv file.
 
-This allows analysis and comparison of key performance metrics across models, such as:
+* This allows analysis and comparison of key performance metrics across models, such as:
 
     * Accuracy
 
