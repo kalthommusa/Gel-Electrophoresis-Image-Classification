@@ -1,59 +1,70 @@
 # Project Overview
 
-This project focuses on training multiple custom deep learning models for performing binary classification on gel electrophoresis images. The project utilizes transfer learning technique via feature extraction and using the PyTorch deep learning framework within the Google Colab environment.
+## Goal: 
 
-The goal of this project is to investigate and compare the performance of three popular pretrained CNN model architectures: ResNet18, VGG16, and MobileNetV3. A total of 24 models are constructed, each utilizing the architecture of these pretrained models as a backbone. 
-The comparison is conducted based on the following factors:
-
-1- Hardware used for training: The models are trained using both CPU and TPU.
-
-2- Classifier head design: Two different designs are explored for the classifier head - a single linear layer and multiple linear layers. 
-This comparison aims to evaluate the impact of the classifier head architecture on the models' classification performance.
-
-3- Optimization algorithm: Two widely used optimization algorithms, Adam and SGD, are employed during training. 
-Comparing the models trained with these algorithms enables an assessment of their effect on the models' accuracy and overall performance.
-
-By considering these factors, the project aims to provide a comprehensive analysis of the performance of the pretrained models under various configurations.
+The goal of this project is to develop and train multiple image classification models using three popular pretrained CNN architectures, ResNet18, VGG16, and MobileNet-V3, with different configurations on a dataset of gel electrophoresis images. The project aims to explore the performance of these models with various settings, including different classifier heads and optimization algorithms. The project utilizes transfer learning technique via feature extraction and using the PyTorch deep learning framework within the Google Colab environment.
 
 
-## There are a total of 24 models developed in this project:
+## Purpose: 
 
-* 3 pretrained model architectures:
+The purpose of this project is to investigate and compare the performance of different models in classifying grayscale gel images. By training and evaluating 24 models with varying configurations, the project aims to identify the most effective model architecture and configuration for accurate gel image classification.
 
-  	1- ResNet18
 
-    2- VGG16
+## Summary of the key points:
 
-    3- MobileNetV3
+* The project generates and builds 24 image classification models by running the train.py script with different command line arguments.
 
-* 2 classifier head architectures for each pretrained model:
+* Each model has a unique combination of:
 
-   1- Single linear layer
+      * Pretrained model (ResNet18, VGG16, MobileNetV3)
 
-   2- Multiple linear layers
+	  * Hardware type (CPU, TPU)
 
-* 2 optimization algorithms for each classifier head/pretrained model combination:
+	  * Classifier head architecture (single linear layer, multiple linear layers)
 
-  1- Adam
+	  * Optimization algorithm (Adam, SGD)
 
-  2- SGD
+* The models are trained on a dataset of grayscale gel electrophoresis images.
 
-* 2 hardware types for each configuration:
+* Training and evaluation results for each model are stored in a results.csv file.
 
-  1- CPU
+This allows analysis and comparison of key performance metrics across models, such as:
 
-  2- TPU
+      *  Accuracy
 
-### Breakdown by model:
+      *  Precision
 
-* ResNet18
+      *  Recall
 
-  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+      *  ROC AUC
 
-* VGG16
+* By systematically varying the model parameters, the project aims to identify the best performing combinations for classifying gel images.
 
-  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
 
-* MobileNetV3
+## Breakdown of the 24 models based on configurations perspective: 
 
-  * 8 models (2 classifier heads x 2 optimizers x 2 hardware)
+1- Hardware Type:
+
+   * 12 models were trained on CPU platform.
+   * 12 models were trained on TPU platform.
+
+2- Pretrained Model:
+
+   * 8 models were based on the ResNet18 architecture.
+   * 8 models were based on the VGG16 architecture.
+   * 8 models were based on the MobileNet-V3 architecture.
+
+3- Classifier Head:
+
+   * 12 models had a single linear layer as the classifier head.
+   * 12 models had multiple linear layers as the classifier head.
+
+4- Optimization Algorithm:
+
+   * 12 models used the Adam optimizer algorithm.
+   * 12 models used the SGD optimizer algorithm.
+
+
+
+
+## The project involves multiple Python scripts for building the dataset, preparing the model architecture, training the model, and saving the results. The project utilizes popular deep learning frameworks like PyTorch and torchvision to implement the functionality.
