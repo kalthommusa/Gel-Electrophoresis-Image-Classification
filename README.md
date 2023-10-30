@@ -22,7 +22,7 @@ The purpose of this project is to investigate and compare the performance of dif
 
 	* Classifier head architecture (single linear layer, multiple linear layers)
 
-	* Optimization algorithm (Adam, SGD)
+    * Optimization algorithm (Adam, SGD)
 
 * The models are trained on a dataset of grayscale gel electrophoresis images.
 
@@ -30,13 +30,13 @@ The purpose of this project is to investigate and compare the performance of dif
 
 This allows analysis and comparison of key performance metrics across models, such as:
 
-   *  Accuracy
+    * Accuracy
 
-   *  Precision
+    * Precision
 
-   *  Recall
-   
-   *  ROC AUC
+    * Recall
+
+    * ROC AUC
 
 * By systematically varying the model parameters, the project aims to identify the best performing combinations for classifying gel images.
 
@@ -63,8 +63,6 @@ This allows analysis and comparison of key performance metrics across models, su
 
    * 12 models used the Adam optimizer algorithm.
    * 12 models used the SGD optimizer algorithm.
-
-
 
 
 ## The project involves multiple Python scripts for building the dataset, preparing the model architecture, training the model, and saving the results. The project utilizes popular deep learning frameworks like PyTorch and torchvision to implement the functionality.
