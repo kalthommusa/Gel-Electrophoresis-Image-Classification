@@ -16,13 +16,13 @@ The purpose of this project is to investigate and compare the performance of dif
 
 * Each model has a unique combination of:
 
-      * Pretrained model (ResNet18, VGG16, MobileNetV3)
+    * Pretrained model (ResNet18, VGG16, MobileNetV3)
 
-	  * Hardware type (CPU, TPU)
+	* Hardware type (CPU, TPU)
 
-	  * Classifier head architecture (single linear layer, multiple linear layers)
+	* Classifier head architecture (single linear layer, multiple linear layers)
 
-	  * Optimization algorithm (Adam, SGD)
+	* Optimization algorithm (Adam, SGD)
 
 * The models are trained on a dataset of grayscale gel electrophoresis images.
 
@@ -30,13 +30,13 @@ The purpose of this project is to investigate and compare the performance of dif
 
 This allows analysis and comparison of key performance metrics across models, such as:
 
-      *  Accuracy
+   *  Accuracy
 
-      *  Precision
+   *  Precision
 
-      *  Recall
-
-      *  ROC AUC
+   *  Recall
+   
+   *  ROC AUC
 
 * By systematically varying the model parameters, the project aims to identify the best performing combinations for classifying gel images.
 
