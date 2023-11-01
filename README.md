@@ -41,7 +41,7 @@ The purpose of this project is to investigate and compare the performance of dif
 * By systematically varying the model parameters, the project aims to identify the best performing combinations for classifying gel images.
 
 
-## Breakdown of the 24 models based on configurations perspective: 
+## Breakdown of the 24 models from the configurations perspective: 
 
 1- Hardware Type:
 
@@ -65,4 +65,31 @@ The purpose of this project is to investigate and compare the performance of dif
    * 12 models used the SGD optimizer algorithm.
 
 
-## The project involves multiple Python scripts for building the dataset, preparing the model architecture, training the model, and saving the results. The project utilizes popular deep learning frameworks like PyTorch and torchvision to implement the functionality.
+## Folders:
+
+* `dataset`: This folder contains the labelled images used to train the models. The images are separated into two subfolders based on their class (gel, not_gel).
+
+* `test_images`: This folder contains images used for inference and evaluating the trained models.
+
+
+## Files:
+
+The project contains 4 core Python script files that work together to build, train and evaluate the deep learning models for the task of classifying gel electrophoresis images:
+
+
+* `utils.py`: Contains utility functions used throughout the project. It includes data transformation functions for training, validation, and testing, as well as functions for training and validating the model, saving plots of the training progress, and saving the results to a CSV file.
+
+
+* `build_dataset.py`: Contains code to programmatically load the dataset, preprocess the images, and split the data into training and validation sets. It defines a custom Dataset class to handle loading and preprocessing the images in an optimized way.
+
+
+* `prepare_model.py`: Implements functions to initialize popular pre-trained CNN architectures (ResNet18, VGG16, MobileNetV3) from PyTorch, modify them to suit the task (grayscale input, customized classification head), and return the modified model objects.
+
+
+* `train.py`: Implements the main training loop logic (the training process of the chosen model). It handles command line parameter parsing, model selection, data loading, training, validation, metric tracking, model saving and results logging. 
+
+
+Together, these files define a complete and modular workflow to efficiently build, tune and evaluate various deep learning models on this image classification benchmark in a structured, comparable manner. 
+
+
+* `results.csv`: This CSV file stores the results of different model training experiments. It contains information such as the model ID, model architecture, training parameters, and evaluation metric for each experiment. The file is updated with new results each time a model is trained and evaluated.
