@@ -135,4 +135,11 @@ For example, ResNet18 with single layer classifier achieved 86.36% accuracy on T
 
 * Heavy models like VGG16 took the longest to train (38-44 mins). ResNet18 and MobileNetV3 were faster (~3-6 mins).
 
-* Inference time followed relative model complexity. VGG16 > ResNet18 > MobileNetV3. CPU inference was 1.5-2x faster than TPU.
+* Inference time followed relative model complexity. VGG16 > ResNet18 > MobileNetV3. 
+
+
+## In conclusion:
+
+Overall, ResNet18 with multi classifier head and SGD optimizer on TPU (Model ID 16) stands out as the most effective configuration in terms of achieving high accuracy with reasonable training and inference times of 6.23 minutes and 7.97 seconds .
+
+This systematic evaluation provided valuable insights into how architectural decisions, optimizer choice, and hardware can impact model effectiveness. The best combination identified here demonstrates an optimized configuration for highly accurate gel image classification.
