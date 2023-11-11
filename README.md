@@ -1,17 +1,21 @@
 # Project Overview
 
-## Goal: 
-
-The goal of this project is to develop and train multiple image classification models that leverage the architecture of three popular pretrained CNN models as a backbone with different configurations on a custom dataset of gel electrophoresis images. The project aims to explore the performance of these models with various settings, including different classifier heads and optimization algorithms. The project utilizes transfer learning technique via feature extraction and using the PyTorch deep learning framework within the Google Colab environment.
+This project aims to develop and train multiple image classification models using pretrained convolutional neural network (CNN) architectures as backbones on a custom dataset of gel electrophoresis images. The goal is to explore the performance of these models with different configurations, including various classifier heads and optimization algorithms. The project utilizes transfer learning techniques via feature extraction and is implemented using the PyTorch deep learning framework within the Google Colab environment.
 
 
-## Purpose: 
+## Introduction
 
-The purpose of this project is to investigate and compare the performance of different models in classifying grayscale gel images. By training and evaluating 24 models with varying configurations, the project aims to identify the most effective model architecture and configuration for accurate gel electrophoresis image classification.
+Gel electrophoresis is a widely used technique in molecular biology for separating DNA, RNA, or proteins based on their size and charge. Accurate classification of gel images is crucial for various biological research applications. This project focuses on developing effective models to automate the classification process.
 
 
+## Goal
 
-## The models were evaluated under 4 factors that influenced the training:
+The goal of this project is to investigate and compare the performance of different models in classifying grayscale gel images. By training and evaluating 24 models with varying configurations, I aim to identify the most effective model architecture and configuration for accurate gel electrophoresis image classification.
+
+
+## Models and Configurations
+
+The models were evaluated based on four factors that influenced the training:
 
 1- Model Architecture:
 
@@ -20,7 +24,6 @@ Three pretrained CNN backbones were used - ResNet18, VGG16 and MobileNetV3.
 2- Classifier Head:
 
 Each backbone was used as a feature extractor and customized by replacing the final fully connected layer with either:
-
 
 * Single linear layer as the classifier head: This configuration consists of a single linear layer for classification.
 
@@ -118,42 +121,9 @@ Models were trained on two types of hardware platforms:
 * TPU (Tensor processing unit) specifically designed for machine learning tasks.
 
 
+## Configuration Breakdown
 
-## Summary of the key points:
-
-* The project generates and builds 24 image classification models by running the `train.py` script with different command line arguments.
-
-For example:
-
-
-* Each model has a unique combination of:
-
-    * Pretrained model architecture (ResNet18, VGG16, MobileNetV3)
-
-	* Hardware type (CPU, TPU)
-
-	* Classifier head design (single linear layer, multiple linear layers)
-
-    * Optimization algorithm (Adam, SGD)
-
-* The models are trained on a custom dataset of grayscale gel electrophoresis images.
-
-* Training and evaluation results for each model are stored in a `results.csv` file.
-
-* This allows analysis and comparison of key performance metrics across models, such as:
-
-    * Accuracy
-
-    * Precision
-
-    * Recall
-
-    * ROC AUC
-
-* By systematically varying the model parameters, the project aims to identify the best performing combinations for classifying gel images.
-
-
-## Breakdown of the 24 models from the configurations perspective: 
+The 24 models can be categorized based on their configurations:
 
 1- Hardware Type:
 
@@ -179,11 +149,9 @@ For example:
 
 ## Folders:
 
-* `dataset`: 
-This folder contains the dataset used for the gel project image classification. It contains a collection of gel electrophoresis images that were labeled and organized into two subfolders based on their class (gel, not_gel).
+* `dataset`: Contains the dataset used for the gel project image classification. It contains a collection of gel electrophoresis images that were labeled and organized into two subfolders based on their class (gel, not_gel).
 
-* `test_images`: 
-This folder contains test images used for evaluating the gel image classification models. It is a separate set of gel electrophoresis images that were not included in the training dataset. These images are used to assess the performance and accuracy of the trained models on unseen data.
+* `test_images`: Contains Contains separate gel electrophoresis images used for evaluating the trained models. These images were not included in the training dataset.
 
 
 ## Files:
@@ -191,25 +159,23 @@ This folder contains test images used for evaluating the gel image classificatio
 The project contains 4 core Python script files that work together to build, train and evaluate the deep learning models for the task of classifying gel electrophoresis images:
 
 
-* `utils.py`: Contains utility functions used throughout the project. It includes data transformation functions for training, validation, and testing, as well as functions for training and validating the model, saving plots of the training progress, and saving the results to a CSV file.
+* `utils.py`: Contains utility functions used throughout the project. It includes data transformation functions for training, validation, and testing, as well as functions for training and validating the model, saving plots of the training progress, and saving the results to a CSV file. 
 
 
-* `build_dataset.py`: Contains code to programmatically load the dataset, preprocess the images, and split the data into training and validation sets. It defines a custom Dataset class to handle loading and preprocessing the images in an optimized way.
+* `build_dataset.py`: Contains code to load the dataset, preprocess the images, and split the data into training and validation sets using a custom Dataset class.
 
 
-* `prepare_model.py`: Implements functions to initialize popular pre-trained CNN architectures (ResNet18, VGG16, MobileNetV3) from PyTorch, modify them to suit the task (grayscale input, customized classification head), and return the modified model objects.
+* `prepare_model.py`: Implements functions to initialize pretrained CNN architectures (ResNet18, VGG16, MobileNetV3) from PyTorch, modifying them for grayscale input and customized classification heads.
 
-
-* `train.py`: Implements the main training loop logic (the training process of the chosen model). It handles command line parameter parsing, model selection, data loading, training, validation, metric tracking, model saving and results logging. 
-
+* `train.py`: Implements the main training loop logic, handling command line parameter parsing, model selection, data loading, training, validation, metric tracking, model saving, and result logging.
 
 Together, these files define a complete and modular workflow to efficiently build, tune and evaluate various deep learning models on this image classification benchmark in a structured, comparable manner. 
 
 
-* `results.csv`: This CSV file stores the results of different model training experiments. It contains information such as the model ID, model architecture, training parameters, and evaluation metric for each experiment. The file is updated with new results each time a model is trained and evaluated.
+* `results.csv`: This CSV file stores the results of different model training experiments, including model ID, architecture, training parameters, and evaluation metrics for each experiment. The file is updated with new results each time a model is trained and evaluated.
 
 
-# Results analysis and comparison of the 24 models:
+# Results
 
 ## The most effective configurations:
 
@@ -238,7 +204,7 @@ For example, ResNet18 with single layer classifier achieved 86.36% accuracy on T
 * Inference time followed relative model complexity. VGG16 > ResNet18 > MobileNetV3. 
 
 
-## In conclusion:
+## Conclusion
 
 Overall, ResNet18 with multi classifier head and SGD optimizer on TPU (Model ID 16) stands out as the most effective configuration in terms of achieving high accuracy with reasonable training and inference times of 6.23 minutes and 7.97 seconds .
 
