@@ -2,9 +2,6 @@
 
 This project aims to develop and train multiple image classification models using pretrained convolutional neural network (CNN) architectures as backbones on a custom dataset of gel electrophoresis images. The goal is to explore the performance of these models with different configurations, including various classifier heads and optimization algorithms. The project utilizes transfer learning techniques via feature extraction and is implemented using the PyTorch deep learning framework within the Google Colab environment.
 
-
-## Introduction
-
 Gel electrophoresis is a widely used technique in molecular biology for separating DNA, RNA, or proteins based on their size and charge. Accurate classification of gel images is crucial for various biological research applications. This project focuses on developing effective models to automate the classification process.
 
 
@@ -17,11 +14,12 @@ The goal of this project is to investigate and compare the performance of differ
 
 The models were evaluated based on four factors that influenced the training:
 
-1- Model Architecture:
+**1- Model Architecture:**
 
 Three pretrained CNN backbones were used - ResNet18, VGG16 and MobileNetV3. 
 
-2- Classifier Head:
+
+**2- Classifier Head:**
 
 Each backbone was used as a feature extractor and customized by replacing the final fully connected layer with either:
 
@@ -30,80 +28,7 @@ Each backbone was used as a feature extractor and customized by replacing the fi
 * Multiple sequential layers as the classifier head: This configuration comprises multiple sequential layers for classification, providing a deeper and more complex structure.
 
 
-## Examples of the pre-trained models with a single linear layer as the classifier head:
-
-* ResNet18
-
-` (fc): Linear(in_features=512, out_features=2, bias=True) `
-
-* VGG16
-
-` (classifier): Sequential(
-    (0): Linear(in_features=25088, out_features=4096, bias=True)
-    (1): ReLU(inplace=True)
-    (2): Dropout(p=0.5, inplace=False)
-    (3): Linear(in_features=4096, out_features=4096, bias=True)
-    (4): ReLU(inplace=True)
-    (5): Dropout(p=0.5, inplace=False)
-    (6): Linear(in_features=4096, out_features=2, bias=True) `
-
-* MobileNet-V3
-
-` (classifier): Sequential(
-    (0): Linear(in_features=960, out_features=1280, bias=True)
-    (1): Hardswish()
-    (2): Dropout(p=0.2, inplace=True)
-    (3): Linear(in_features=1280, out_features=2, bias=True) `
-
-
-## Examples of the pre-trained models with sequential/multi layers as the classifier head:
- 
-* ResNet18
-
-` (fc): Sequential(
-    (0): Linear(in_features=512, out_features=512, bias=True)
-    (1): ReLU()
-    (2): Dropout(p=0.25, inplace=False)
-    (3): Linear(in_features=512, out_features=256, bias=True)
-    (4): ReLU()
-    (5): Dropout(p=0.5, inplace=False)
-    (6): Linear(in_features=256, out_features=2, bias=True) `
-
-* VGG16
-
-` (classifier): Sequential(
-    (0): Linear(in_features=25088, out_features=4096, bias=True)
-    (1): ReLU(inplace=True)
-    (2): Dropout(p=0.5, inplace=False)
-    (3): Linear(in_features=4096, out_features=4096, bias=True)
-    (4): ReLU(inplace=True)
-    (5): Dropout(p=0.5, inplace=False)
-    (6): Sequential(
-      (0): Linear(in_features=4096, out_features=512, bias=True)
-      (1): ReLU()
-      (2): Dropout(p=0.25, inplace=False)
-      (3): Linear(in_features=512, out_features=256, bias=True)
-      (4): ReLU()
-      (5): Dropout(p=0.5, inplace=False)
-      (6): Linear(in_features=256, out_features=2, bias=True) `
-
-* MobileNet-V3
-
-` (classifier): Sequential(
-    (0): Linear(in_features=960, out_features=1280, bias=True)
-    (1): Hardswish()
-    (2): Dropout(p=0.2, inplace=True)
-    (3): Sequential(
-      (0): Linear(in_features=1280, out_features=512, bias=True)
-      (1): ReLU()
-      (2): Dropout(p=0.25, inplace=False)
-      (3): Linear(in_features=512, out_features=256, bias=True)
-      (4): ReLU()
-      (5): Dropout(p=0.5, inplace=False)
-      (6): Linear(in_features=256, out_features=2, bias=True) `
-
-
-3- Optimizer Algorithm:
+**3- Optimizer Algorithm:**
 
 Each architecture/head combination was trained with either: the Adam and SGD optimizers (both with fixed 0.001 learning rate for fair comparison).	
 
@@ -112,7 +37,7 @@ Each architecture/head combination was trained with either: the Adam and SGD opt
 * SGD (Stochastic Gradient Descent) is a traditional optimization algorithm that updates the model parameters with the gradients of the loss function. It iteratively adjusts the weights with a fixed learning rate to minimize the loss.
 
 
-4- Hardware platform:
+**4- Hardware platform:**
 
 Models were trained on two types of hardware platforms: 
 
@@ -125,38 +50,34 @@ Models were trained on two types of hardware platforms:
 
 The 24 models can be categorized based on their configurations:
 
-1- Hardware Type:
-
+Hardware Type:
    * 12 models were trained on CPU platform.
    * 12 models were trained on TPU platform.
 
-2- Pretrained Model:
-
+Pretrained Model:
    * 8 models were based on the ResNet18 architecture.
    * 8 models were based on the VGG16 architecture.
    * 8 models were based on the MobileNet-V3 architecture.
 
-3- Classifier Head:
-
+Classifier Head:
    * 12 models had a single linear layer as the classifier head.
    * 12 models had multiple linear layers as the classifier head.
 
-4- Optimization Algorithm:
-
+Optimization Algorithm:
    * 12 models used the Adam optimizer algorithm.
    * 12 models used the SGD optimizer algorithm.
 
 
-## Folders:
+## Folders
 
 * `dataset`: Contains the dataset used for the gel project image classification. It contains a collection of gel electrophoresis images that were labeled and organized into two subfolders based on their class (gel, not_gel).
 
 * `test_images`: Contains Contains separate gel electrophoresis images used for evaluating the trained models. These images were not included in the training dataset.
 
 
-## Files:
+## Files
 
-The project contains 4 core Python script files that work together to build, train and evaluate the deep learning models for the task of classifying gel electrophoresis images:
+The project contains 4 core Python script files that work together to efficiently build, tune and evaluate various deep learning models on this image classification benchmark in a structured, comparable manner:
 
 
 * `utils.py`: Contains utility functions used throughout the project. It includes data transformation functions for training, validation, and testing, as well as functions for training and validating the model, saving plots of the training progress, and saving the results to a CSV file. 
@@ -168,8 +89,6 @@ The project contains 4 core Python script files that work together to build, tra
 * `prepare_model.py`: Implements functions to initialize pretrained CNN architectures (ResNet18, VGG16, MobileNetV3) from PyTorch, modifying them for grayscale input and customized classification heads.
 
 * `train.py`: Implements the main training loop logic, handling command line parameter parsing, model selection, data loading, training, validation, metric tracking, model saving, and result logging.
-
-Together, these files define a complete and modular workflow to efficiently build, tune and evaluate various deep learning models on this image classification benchmark in a structured, comparable manner. 
 
 
 * `results.csv`: This CSV file stores the results of different model training experiments, including model ID, architecture, training parameters, and evaluation metrics for each experiment. The file is updated with new results each time a model is trained and evaluated.
