@@ -96,6 +96,8 @@ The project contains 4 core Python script files that work together to efficientl
 
 # Results
 
+![alt text](results.png)
+
 ## The most effective configurations:
 
 * ResNet18: This architecture shows consistent performance across different configurations. Models with ResNet18 achieve high accuracy and balanced precision and recall values, this suggests ResNet18 is better suited for this task.
