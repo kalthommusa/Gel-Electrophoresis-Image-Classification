@@ -23,9 +23,9 @@ Three pretrained CNN backbones were used - ResNet18, VGG16 and MobileNetV3.
 
 Each backbone was used as a feature extractor and customized by replacing the final fully connected layer with either:
 
-* Single linear layer as the classifier head: This configuration consists of a single linear layer for classification.
+* Single linear layer as the classifier head (single layer for shortcut): This configuration consists of a single linear layer for classification.
 
-* Multiple sequential layers as the classifier head: This configuration comprises multiple sequential layers for classification, providing a deeper and more complex structure.
+* Multiple sequential layers as the classifier head (multi-layer for shortcut): This configuration comprises multiple sequential layers for classification, providing a deeper and more complex structure.
 
 
 **3- Optimizer Algorithm:**
@@ -61,7 +61,7 @@ Pretrained Model:
 
 Classifier Head:
    * 12 models had a single linear layer as the classifier head.
-   * 12 models had multiple linear layers as the classifier head.
+   * 12 models had a multi-layer as the classifier head.
 
 Optimization Algorithm:
    * 12 models used the Adam optimizer algorithm.
@@ -100,11 +100,11 @@ The project contains 4 core Python script files that work together to efficientl
 
 ## The most effective configurations:
 
-* ResNet18: This architecture shows consistent performance across different configurations. Models with ResNet18 achieve high accuracy and balanced precision and recall values, this suggests ResNet18 is better suited for this task.
-
-* The ResNet18 model achieved the highest accuracies using a multi-layer classifier head and SGD optimizer. Specifically, the ResNet18 model trained on TPU with these settings (Model ID 16) achieved the maximum accuracy of 95.45%. Meanwhile, the ResNet18 model trained on CPU with a multi-layer head and SGD (Model ID 4) obtained a slightly lower but still high accuracy of 90.91%. This demonstrates that although both models performed well overall, the TPU-based ResNet18 configuration led to the best result for this task.
+* ResNet18 model achieved the highest accuracies using a multi-layer classifier head and SGD optimizer. Specifically, the ResNet18 model trained on TPU with these settings (Model ID 16) achieved the maximum accuracy of 95.45%. Meanwhile, the ResNet18 model trained on CPU with a multi-layer head and SGD (Model ID 4) obtained a slightly lower but still high accuracy of 90.91%. This demonstrates that although both models performed well overall, the TPU-based ResNet18 configuration led to the best result for this task.
 
 ## Further analysis and observations:
+
+* ResNet18 architecture shows consistent performance across different configurations. Models with ResNet18 achieve high accuracy and balanced precision and recall values, this suggests ResNet18 is better suited for this task.
 
 * VGG16 models performed reasonably well, achieving accuracies of 77.27-86.36% on both the CPU and TPU (Model IDs 7, 8, 20).
 
@@ -113,8 +113,9 @@ The lighter weight architecture seems less optimal for this task than heavier Re
 
 * VGG16 with a single classifier head and SGD optimizer had the lowest accuracy of 50.00% on a CPU (Model ID 6). This model struggled to effectively classify the data.
 
-* Models with sequential/multiple layers as the classifier head outperformed models with single linear layer as the classifier head for all settings on both the CPU and TPU. This suggests that the extra layers help learn more complex features.
-For example, ResNet18 with single layer classifier achieved 86.36% accuracy on TPU using SGD optimizer (Model ID 14) vs 95.45% with multi layer classifier using the same settings (Model ID 16). Biggest difference was for VGG16 with single layer classifier achieved 50.00% accuracy on CPU using SGD optimizer (Model ID 6) vs 77.27% with multi layer classifier using the same settings (Model ID 8). The improved performance indicates sequential/multiple layers as the classifier head have greater representation power for this classification problem. 
+* Models with multi-layer as the classifier head outperformed models with single layer as the classifier head for all settings on both the CPU and TPU. This suggests that the extra layers help learn more complex features.
+
+For example, ResNet18 with single layer classifier achieved 86.36% accuracy on TPU using SGD optimizer (Model ID 14) vs 95.45% with multi-layer classifier using the same settings (Model ID 16). Biggest difference was for VGG16 with single layer classifier achieved 50.00% accuracy on CPU using SGD optimizer (Model ID 6) vs 77.27% with multi-layer classifier using the same settings (Model ID 8). The improved performance indicates multi-layer as the classifier head have greater representation power for this classification problem. 
 
 * Both Adam and SGD worked well but SGD generally achieved higher accuracy than Adam across different model architectures/configurations, often by significant improvements like ResNet18 with Adam optimizer on TPU achieved 86.36% accuracy (Model ID 15) vs 95.45% accuracy with SGD optimizer using the same settings (Model ID 16). Suggesting SGD converges better and may be better suited than Adam for this specific image classification task.
 
@@ -127,6 +128,6 @@ For example, ResNet18 with single layer classifier achieved 86.36% accuracy on T
 
 ## Conclusion
 
-Overall, ResNet18 with multi classifier head and SGD optimizer on TPU (Model ID 16) stands out as the most effective configuration in terms of achieving high accuracy with reasonable training and inference times of 6.23 minutes and 7.97 seconds .
+Overall, ResNet18/multi-layer/SGD on TPU (Model ID 16) stood out as it led to the best performance based on the evaluation metrics with reasonable training and inference times of 6.23 minutes and 7.97 seconds.
 
 This systematic evaluation provided valuable insights into how architectural decisions, optimizer choice, and hardware can impact model effectiveness. The best combination identified here demonstrates an optimized configuration for highly accurate gel image classification.
