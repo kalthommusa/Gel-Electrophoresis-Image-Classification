@@ -94,6 +94,28 @@ The project contains 4 core Python script files that work together to efficientl
 * `results.csv`: This CSV file stores the results of different model training experiments, including model ID, architecture, training parameters, and evaluation metrics for each experiment. The file is updated with new results each time a model is trained and evaluated.
 
 
+# Implementation
+
+The following notebooks serve as practical examples and resources for understanding and implementing gel image classification using deep learning models. Each notebook focuses on training a specific model architecture (ResNet18, VGG16, or MobileNetV3) on either a CPU or TPU.
+
+* [1_Gel_Classifier_ResNet18.ipynb](1_Gel_Classifier_ResNet18.ipynb): This Jupyter notebook showcases the implementation of training a customized ResNet18 model on a CPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
+
+
+* [2_Gel_Classifier_VGG16.ipynb](2_Gel_Classifier_VGG16.ipynb): This Jupyter notebook showcases the implementation of training a customized VGG16 model on a CPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
+
+
+* [3_Gel_Classifier_MobileNetV3.ipynb](3_Gel_Classifier_MobileNetV3.ipynb): This Jupyter notebook showcases the implementation of training a customized MobileNetV3 model on a CPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
+
+
+* [4_Gel_Classifier_ResNet18.ipynb](4_Gel_Classifier_ResNet18.ipynb): This Jupyter notebook showcases the implementation of training a customized ResNet18 model on a TPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
+
+
+* [5_Gel_Classifier_VGG16.ipynb](5_Gel_Classifier_VGG16.ipynb): This Jupyter notebook showcases the implementation of training a customized VGG16 model on a TPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
+
+
+* [6_Gel_Classifier_MobileNetV3.ipynb](6_Gel_Classifier_MobileNetV3.ipynb): This Jupyter notebook showcases the implementation of training a customized MobileNetV3 model on a TPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
+
+
 # Results
 
 The table below provides comprehensive information on the training and evaluation of all 24 models, as listed in the [results csv](results.csv) file.
