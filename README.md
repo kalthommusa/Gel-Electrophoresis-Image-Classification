@@ -25,7 +25,7 @@ Each backbone was used as a feature extractor and customized by replacing the fi
 
 * Single linear layer as the classifier head (single layer for shortcut): This configuration consists of a single linear layer for classification.
 
-* Multiple sequential layers as the classifier head (multi-layer for shortcut): This configuration comprises multiple sequential layers for classification, providing a deeper and more complex structure.
+* Sequential multi-layer as the classifier head (multi-layer for shortcut): This configuration comprises multiple sequential layers for classification, providing a deeper and more complex structure.
 
 
 **3- Optimizer Algorithm:**
@@ -95,6 +95,8 @@ The project contains 4 core Python script files that work together to efficientl
 
 
 # Results
+
+The table below provides comprehensive information on the training and evaluation of all 24 models, as listed in the [results csv](results.csv) file.
 
 ![alt text](results.png)
 
