@@ -116,11 +116,35 @@ The following notebooks serve as practical examples and resources for understand
 * [6_Gel_Classifier_MobileNetV3.ipynb](6_Gel_Classifier_MobileNetV3.ipynb): This Jupyter notebook showcases the implementation of training a customized MobileNetV3 model on a TPU. This notebook explores various configurations, evaluates the model's performance, and demonstrates the process of making inferences using the trained model.
 
 
+* [7_Results_Visualizations.ipynb](7_Results_Visualizations.ipynb): This Jupyter notebook provides a set of visualizations to compare the performance of 24 models. The visualizations offer a comprehensive and efficient way to assess and compare the performance of the models, making it a valuable resource for understanding the results of the gel project image classification.
+
+
 # Results
 
 The table below provides comprehensive information on the training and evaluation of all 24 models, as listed in the [results csv](results.csv) file.
 
-![alt text](results.png)
+![alt text](imgs/model_accuracies.png)
+
+![alt text](imgs/model_precisions.png)
+
+![alt text](imgs/model_recalls.png)
+
+![alt text](imgs/model_ROC AUCs.png)
+
+![alt text](imgs/model_ids_vs_evaluation_metrics.png)
+
+![alt text](imgs/architecture_vs_accuracy.png)
+
+![alt text](imgs/hardware_vs_accuracy.png)
+
+![alt text](imgs/classifier_heads_vs_accuracy.png)
+
+![alt text](imgs/optimizer_vs_accuracy.png)
+
+![alt text](imgs/architecture_vs_training_time.png)
+
+![alt text](imgs/architecture_vs_inference_time.png)
+
 
 ## The most effective configurations:
 
