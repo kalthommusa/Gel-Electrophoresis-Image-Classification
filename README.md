@@ -129,7 +129,7 @@ The table below provides comprehensive information on the training and evaluatio
 
 ![alt text](imgs/model_recalls.png)
 
-![alt text](imgs/model_ROC AUCs.png)
+![alt text](imgs/model_ROC_AUCs.png)
 
 ![alt text](imgs/model_ids_vs_evaluation_metrics.png)
 
