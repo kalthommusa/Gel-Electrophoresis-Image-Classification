@@ -174,9 +174,25 @@ The lighter weight architecture seems less optimal for this task than heavier Re
 
 * Inference time followed relative model complexity. VGG16 > ResNet18 > MobileNetV3. 
 
+## Demo
+
+The following figures showcase the predictions of the ResNet18/multi-layer/SGD on TPU (Model ID 16) on unseen gel images, providing insights into its performance. In the evaluation of 11 test images, this particular model demonstrated exceptional accuracy in recognizing and identifying the gel images, successfully classifying all but one image. 
+
+![alt text](imgs/prediction1.png)
+![alt text](imgs/prediction2.png)
+![alt text](imgs/prediction3.png)
+![alt text](imgs/prediction4.png)
+![alt text](imgs/prediction5.png)
+![alt text](imgs/prediction6.png)
+![alt text](imgs/prediction7.png)
+![alt text](imgs/prediction8.png)
+![alt text](imgs/prediction9.png)
+![alt text](imgs/prediction10.png)
+![alt text](imgs/prediction11.png)
+
+This outstanding performance highlights the effectiveness and reliability of the ResNet18 architecture coupled with the multi-layer approach and the Stochastic Gradient Descent (SGD) optimizer on TPU hardware. The model's ability to accurately classify the majority of gel images reaffirms its proficiency and reinforces its suitability for gel project image classification tasks.
+
 
 ## Conclusion
-
-Overall, ResNet18/multi-layer/SGD on TPU (Model ID 16) stood out as it led to the best performance based on the evaluation metrics with reasonable training and inference times of 6.23 minutes and 7.97 seconds.
 
 This systematic evaluation provided valuable insights into how architectural decisions, optimizer choice, and hardware can impact model effectiveness. The best combination identified here demonstrates an optimized configuration for highly accurate gel image classification.
