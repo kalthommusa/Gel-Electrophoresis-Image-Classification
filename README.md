@@ -127,7 +127,50 @@ The following notebooks serve as practical examples and resources for understand
 * [7_Results_Visualizations.ipynb](7_Results_Visualizations.ipynb): This Jupyter notebook provides a set of visualizations to compare the performance of 24 models. These visuals serve as an efficient and informative summary of the models' performance, aiding in the understanding and interpretation of the results of the gel project image classification. 
 
 
-# Evaluation results
+## Model Training
+
+I trained the 24 models by running the `train.py` script 24 times using the 6 notebooks mentioned above. Each execution involved specifying unique model configurations through command line arguments and providing specific file paths.
+
+* Example:
+
+```
+python train.py 
+  --dataset_dir='/dataset'
+  --model_id=1
+  --hardware_type='cpu'  
+  --pretrained_model='resnet18'
+  --classifier_head='single'
+  --opt_alg='adam'
+  --model_path='/gel_classifier-1.pth'
+  --plots_path='/gel_classifier-1.png'
+  --results_file='/results.csv'
+```
+
+## Command arguments:
+
+Here is the command line arguments table with 3 columns for name, description and default value:
+
+| Name | Description | Default |
+|-|-|-|
+|--dataset_dir| Path to the Dataset Directory | './data'|
+|--model_id| The ID number assigned to the model| 1|  
+|--hardware_type| The type of the hardware used to train the model (cpu, tpu) |'cpu'|
+|--pretrained_model| Pretrained model (resnet18, vgg16, mobilenet-v3)|'resnet18'|
+|--classifier_head| The architecture of the classifier head to use (single, multi)|'single'|
+|--opt_alg| Type of the optimizer algorithm to use (adam, sgd)|'adam'|
+|--learning_rate| Learning rate for the optimizer|0.001|
+|--batch_size| Batch size|23|
+|--num_epochs| Number of training epochs|20|
+|--model_path| Path to save the custom trained model parameters/weights|'./models/model.pth'|
+|--plots_path| Path to save the loss and accuracy plots|'./plots/'|
+|--results_file| Path to save the comparison results|'results.csv'|
+
+By running the train.py script with different combinations of these arguments, the 24 models were trained and evaluated, resulting in the generation of the model files, training plots, and the update of the results.csv file with the corresponding model's performance metrics.
+
+
+# Model Performance Summary
+
+The table below presents a summary of the evaluation results for all 24 models, including their model IDs, hardware types, pretrained models, classifier heads, optimization algorithms, training times, inference times, accuracy, precision, recall, confusion matrices, and ROC AUC scores. (the same table as in this [results.csv](results.csv) file)
 
 
 | model_id | hardware_type | pretrained_model | classifier_head | opt_alg | training_time_mins | inference_time_secs | accuracy | precision | recall | conf_mat | roc_auc |
@@ -158,7 +201,7 @@ The following notebooks serve as practical examples and resources for understand
 | 24 | tpu | mobilenet-v3 | multi | sgd | 5.599146846930186 | 9.973444938659668 | 81.82% | 82.91% | 81.82% | [[8, 3], [1, 10]] | 81.82% |
 
 
-# Results visualization
+# Performance Comparison Visualizations
 
 The figures below provide a visual comparison of various performance metrics for the 24 models including accuracy, precision, recall, ROC AUC as well as training and inference times. Bar charts compare individual metrics across models while heatmaps show each model's performance across all metrics. Additional charts analyze the impact of model architecture, hardware type, classifier head and optimizer on accuracy.
 
