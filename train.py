@@ -18,7 +18,7 @@ def parse_arguments():
     parser.add_argument('--dataset_dir', type=str, default='./data', help='Path to the Dataset Directory')
     parser.add_argument('--model_id', type=int, default=1, help='The ID number assigned to the model')
     parser.add_argument('--hardware_type', type=str, default='cpu', help='The type of the hardware used to train the model (cpu, tpu)')
-    parser.add_argument('--pretrained_model', type=str, default='vgg16', help='Pretrained model (resnet18, vgg16, mobilenet-v3)')
+    parser.add_argument('--pretrained_model', type=str, default='resnet18', help='Pretrained model (resnet18, vgg16, mobilenet-v3)')
     parser.add_argument('--classifier_head', type=str, default='single', help='The architecture of the classifier head to use (single, multi)')
     parser.add_argument('--opt_alg', type=str, default='adam', help='Type of the optimizer algorithm to use (adam, sgd)')
     parser.add_argument('--learning_rate', type=float, default=0.001, help='Learning rate for the optimizer')
