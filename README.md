@@ -203,7 +203,6 @@ The table below presents a summary of the evaluation results for all 24 models, 
 
 The figures below provide a visual comparison of various performance metrics for the 24 models including accuracy, precision, recall, ROC AUC as well as training and inference times. Bar charts compare individual metrics across models while heatmaps show each model's performance across all metrics. Additional charts analyze the impact of model architecture, hardware type, classifier head and optimizer on accuracy.
 
-
 ![alt text](imgs/model_accuracies.png)
 
 ![alt text](imgs/model_precisions.png)
@@ -253,6 +252,7 @@ The lighter weight architecture seems less optimal for this task than heavier Re
 * Heavy models like VGG16 took the longest to train (38-44 mins). ResNet18 and MobileNetV3 were faster (~3-6 mins).
 
 * Inference time followed relative model complexity. VGG16 > ResNet18 > MobileNetV3. 
+
 
 ## Demo
 
