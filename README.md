@@ -10,6 +10,11 @@ Gel electrophoresis is a widely used technique in molecular biology for separati
 The goal of this project is to investigate and compare the performance of different models in classifying grayscale gel images. By training and evaluating 24 models with varying configurations, I aim to identify the most effective model architecture and configuration for accurate gel electrophoresis image classification.
 
 
+## Dataset
+
+The [dataset](dataset/) comprises a total of 92 images sourced from the internet. It includes 46 grayscale gel electrophoresis images and 46 randomly selected grayscale non-gel images. 
+
+
 ## Models and Configurations
 
 The models were evaluated based on four factors that influenced the training:
