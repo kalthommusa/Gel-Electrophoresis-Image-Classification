@@ -148,8 +148,6 @@ python train.py
 
 ## Command arguments:
 
-Here is the command line arguments table with 3 columns for name, description and default value:
-
 | Name | Description | Default |
 |-|-|-|
 |--dataset_dir| Path to the Dataset Directory | './data'|
