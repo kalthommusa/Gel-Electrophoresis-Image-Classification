@@ -21,12 +21,18 @@ The models were evaluated based on four factors that influenced the training:
 
 **1- Model Architecture:**
 
-Three pretrained CNN backbones were used - ResNet18, VGG16 and MobileNetV3. 
+As a backbone, I chose 3 pretrained CNN architectures to be implemented in this project:
+
+* ResNet18
+
+* VGG16 
+
+* MobileNetV3
 
 
 **2- Classifier Head:**
 
-Each backbone was used as a feature extractor and customized by replacing the final fully connected layer with either:
+I used the mentioned backbones as a feature extractor and customized them by replacing the final fully connected layer with either:
 
 * Single linear layer as the classifier head (single layer for shortcut): This configuration consists of a single linear layer for classification.
 
@@ -35,7 +41,7 @@ Each backbone was used as a feature extractor and customized by replacing the fi
 
 **3- Optimizer Algorithm:**
 
-Each architecture/head combination was trained with either: the Adam and SGD optimizers (both with fixed 0.001 learning rate for fair comparison).	
+I trained each architecture/head combination using either the Adam or SGD optimizer. Both optimizers utilized the CrossEntropyLoss function and were set with a fixed learning rate of 0.001 to ensure a fair comparison.
 
 * Adam is an adaptive learning rate optimization algorithm that is widely used for its simplicity and robustness. It adjusts the learning rate dynamically during training to improve convergence.
 
@@ -44,7 +50,7 @@ Each architecture/head combination was trained with either: the Adam and SGD opt
 
 **4- Hardware platform:**
 
-Models were trained on two types of hardware platforms: 
+I trained the models on two types of hardware platforms:
 
 * CPU (Central processing unit)
 
@@ -53,24 +59,21 @@ Models were trained on two types of hardware platforms:
 
 ## Configuration Breakdown
 
-The 24 models can be categorized based on their configurations:
-
-Hardware Type:
-   * 12 models were trained on CPU platform.
-   * 12 models were trained on TPU platform.
-
-Pretrained Model:
-   * 8 models were based on the ResNet18 architecture.
-   * 8 models were based on the VGG16 architecture.
-   * 8 models were based on the MobileNet-V3 architecture.
-
-Classifier Head:
-   * 12 models had a single linear layer as the classifier head.
-   * 12 models had a multi-layer as the classifier head.
-
-Optimization Algorithm:
-   * 12 models used the Adam optimizer algorithm.
-   * 12 models used the SGD optimizer algorithm.
+| Configuration | Number of Models |
+|---|---|
+| **Hardware Type** | |
+| CPU | 12 |
+| TPU | 12 |
+| **Pretrained Model** | |
+| ResNet18 | 8 |
+| VGG16 | 8 |
+| MobileNet-V3 | 8 |
+| **Classifier Head** | |
+| Single Linear Layer | 12 |
+| Multi-Layer | 12 |
+| **Optimization Algorithm** | |
+| Adam | 12 |
+| SGD | 12 |
 
 
 ## Folders
