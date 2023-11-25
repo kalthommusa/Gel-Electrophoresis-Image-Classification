@@ -17,7 +17,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Training script')
     parser.add_argument('--dataset_dir', type=str, default='./data', help='Path to the Dataset Directory')
     parser.add_argument('--model_id', type=int, default=1, help='The ID number assigned to the model')
-    parser.add_argument('--hardware_type', type=str, default='cpu', help='The type of the hardware used to train the model (cpu, tpu)')
+    parser.add_argument('--hardware_type', type=str, default='cpu', help='The type of the hardware used to train the model (cpu, gpu)')
     parser.add_argument('--pretrained_model', type=str, default='resnet18', help='Pretrained model (resnet18, vgg16, mobilenet-v3)')
     parser.add_argument('--classifier_head', type=str, default='single', help='The architecture of the classifier head to use (single, multi)')
     parser.add_argument('--opt_alg', type=str, default='adam', help='Type of the optimizer algorithm to use (adam, sgd)')
@@ -59,8 +59,17 @@ def train_model(args):
     else:
         raise ValueError("Invalid pretrained model")
 
-    # Choose the device to train on (GPU if available, else CPU)
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # Choose the device to train on 
+    if args.hardware_type == 'gpu':
+        if torch.cuda.is_available():
+            device = torch.device('cuda')
+        else:
+            raise ValueError("GPU is not available. Please select 'cpu' as the hardware type.")
+    elif args.hardware_type == 'cpu':
+        device = torch.device('cpu')
+    else:
+        raise ValueError("Invalid hardware type. Please select either 'cpu' or 'gpu'.")
+        
     # Move the model to the device
     model = model.to(device)
 
