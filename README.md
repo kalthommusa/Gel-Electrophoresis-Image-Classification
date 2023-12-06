@@ -76,6 +76,7 @@ I trained the models on two types of hardware platforms:
 | SGD | 12 |
 
 
+
 # Project Pipeline and Workflow
 
 The project consists of 4 core Python script files that collaborate in the model development process in a structured and modular manner:
@@ -104,6 +105,7 @@ Each of the following 6 notebooks focuses on training and evaluating a specific 
 * [5_Gel_Classifier_VGG16.ipynb](5_Gel_Classifier_VGG16.ipynb): This Jupyter notebook showcases the implementation of training a customized VGG16 model on GPU. 
 
 * [6_Gel_Classifier_MobileNetV3.ipynb](6_Gel_Classifier_MobileNetV3.ipynb): This Jupyter notebook showcases the implementation of training a customized MobileNetV3 model on GPU. 
+
 
 
 # Model Training Process
@@ -143,6 +145,7 @@ python train.py
 |--results_file| Path to save the comparison results|'results.csv'|
 
 
+
 # Model Evaluation
 
 The table below summarizes the performance of the 24 models trained with different architectures and hyperparameters, each row in the table corresponds to a specific model configuration. The results were recorded in the [results.csv](results.csv) file generated at the end of training for each model. 
@@ -176,62 +179,38 @@ The table below summarizes the performance of the 24 models trained with differe
 | 24 | gpu | mobilenet-v3 | multi | sgd | 0.3393968224525451 | 5.609779596328735 | 72.73% | 82.35% | 72.73% | [[11, 0], [6, 5]] | 72.73% |
 
 
-# Performance Comparison Visualizations
-
-The figures below provide a visual comparison of various performance metrics for the 24 models including accuracy, precision, recall, ROC AUC as well as training and inference times. Bar charts compare individual metrics across models while heatmaps show each model's performance across all metrics. Additional charts analyze the impact of model architecture, hardware type, classifier head and optimizer on accuracy.
-
-![alt text](imgs/model_accuracies.png)
-
-![alt text](imgs/model_precisions.png)
-
-![alt text](imgs/model_recalls.png)
-
-![alt text](imgs/model_ROC_AUCs.png)
-
-![alt text](imgs/model_ids_vs_evaluation_metrics.png)
-
-![alt text](imgs/architecture_vs_accuracy.png)
-
-![alt text](imgs/hardware_vs_accuracy.png)
-
-![alt text](imgs/classifier_heads_vs_accuracy.png)
-
-![alt text](imgs/optimizer_vs_accuracy.png)
-
-![alt text](imgs/architecture_vs_training_time.png)
-
-![alt text](imgs/architecture_vs_inference_time.png)
+![alt text](imgs/heatmap-evaluation-metrics.png)
 
 
-## The most effective configurations:
 
-* ResNet18 model achieved the highest accuracies using a multi-layer classifier head and SGD optimizer. Specifically, the ResNet18 model trained on TPU with these settings (Model ID 16) achieved the maximum accuracy of 95.45%. Meanwhile, the ResNet18 model trained on CPU with a multi-layer head and SGD (Model ID 4) obtained a slightly lower but still high accuracy of 90.91%. This demonstrates that although both models performed well overall, the TPU-based ResNet18 configuration led to the best result for this task.
+# Optimal Model Configuration and Performance
 
-## Further analysis and observations:
+Among the 24 models trained with varying architectures and hyperparameters, the most effective configuration was observed in model (model_id: 16). This model, trained on *GPU*, utilized the *ResNet18* architecture, a *multi-layer* classifier head, and the Stochastic Gradient Descent (*SGD*) optimizer.
 
-* ResNet18 architecture shows consistent performance across different configurations. Models with ResNet18 achieve high accuracy and balanced precision and recall values, this suggests ResNet18 is better suited for this task.
+This model configuration led to the best result across all metrics for this task with:
 
-* VGG16 models performed reasonably well, achieving accuracies of 77.27-86.36% on both the CPU and TPU (Model IDs 7, 8, 20).
+Accuracy: *95.45%*
+Precision: *95.83%*
+Recall: *95.45%*
 
-* MobileNetV3 models performed the worst, with maximum accuracy of 81.82% (Model ID 24). 
-The lighter weight architecture seems less optimal for this task than heavier ResNet18 and VGG16.
+* The accuracy of 95.45% indicates that the model correctly classified 95.45% of the gel electrophoresis images. 
 
-* VGG16 with a single classifier head and SGD optimizer had the lowest accuracy of 50.00% on a CPU (Model ID 6). This model struggled to effectively classify the data.
+* The precision of 95.83% suggests that when the model predicted a positive result, it was correct 95.83% of the time. 
 
-* Models with multi-layer as the classifier head outperformed models with single layer as the classifier head for all settings on both the CPU and TPU. This suggests that the extra layers help learn more complex features.
+* The recall of 95.45% indicates that the model captured 95.45% of the actual positive instances.
 
-	* For example, ResNet18 with single layer classifier achieved 86.36% accuracy on TPU using SGD optimizer (Model ID 14) vs 95.45% with multi-layer classifier using the same settings (Model ID 16). Biggest difference was for VGG16 with single layer classifier achieved 50.00% accuracy on CPU using SGD optimizer (Model ID 6) vs 77.27% with multi-layer classifier using the same settings (Model ID 8). The improved performance indicates multi-layer as the classifier head have greater representation power for this classification problem. 
+* The confusion matrix further illustrates the model's performance, showing 11 true positive classifications and 10 true negative classifications. There were no false positives or false negatives, indicating a high level of accuracy.
 
-* Both Adam and SGD worked well but SGD generally achieved higher accuracy than Adam across different model architectures/configurations, often by significant improvements like ResNet18 with Adam optimizer on TPU achieved 86.36% accuracy (Model ID 15) vs 95.45% accuracy with SGD optimizer using the same settings (Model ID 16). Suggesting SGD converges better and may be better suited than Adam for this specific image classification task.
-
-* Training on the TPU led to better results than the CPU for all models, with accuracy improvements of 3-15%. The accelerated compute of the TPU benefited the training.
-
-* Heavy models like VGG16 took the longest to train (38-44 mins). ResNet18 and MobileNetV3 were faster (~3-6 mins).
-
-* Inference time followed relative model complexity. VGG16 > ResNet18 > MobileNetV3. 
+![alt text](imgs/confusion-matrix-gel-classifier-16.png)
 
 
-## Demo
+* The area under the ROC curve (ROC AUC) is 95.45%. This metric is commonly used to evaluate the overall performance of a binary classifier, with a higher value indicating better discrimination between positive and negative instances.
+
+![alt text](imgs/roc-curve-gel-classifier-16.png)
+
+
+
+# Demo
 
 The following figures showcase the predictions of the ResNet18/multi-layer/SGD model on GPU (model_id: 16) for unseen gel images. During the evaluation of 11 test images, this model did an impressive job successfully classifying all of them.
 
@@ -248,9 +227,12 @@ The following figures showcase the predictions of the ResNet18/multi-layer/SGD m
 ![alt text](imgs/prediction10.png)
 ![alt text](imgs/prediction11.png)
 
-This outstanding performance underscores the effectiveness and reliability of the ResNet18 architecture combined with the multi-layer approach and the Stochastic Gradient Descent (SGD) optimizer on GPU hardware. Additionally, it highlights the suitability of this model for gel electrophoresis image classification tasks in real-world applications, with potential benefits in scientific research.
 
+This outstanding performance demonstrates the effectiveness and reliability of this configuration:
 
-## Conclusion
+* Hardware Type: *GPU*
+* Pretrained Model: *ResNet18*
+* Classifier Head: *Multi-Layer*
+* Optimization Algorithm: *SGD*
 
-This systematic evaluation provided valuable insights into how architectural decisions, optimizer choice, and hardware can impact model effectiveness. The best combination identified here demonstrates an optimized configuration for highly accurate gel image classification.
+and highlights the suitability of this model for real-world gel electrophoresis image classification tasks, offering potential benefits in scientific research.
