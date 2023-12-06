@@ -36,16 +36,16 @@ I used the mentioned backbones as a feature extractor and customized them by rep
 
 * Single linear layer as the classifier head (single layer for shortcut): This configuration consists of a single linear layer for classification.
 
-* Sequential multi-layer as the classifier head (multi-layer for shortcut): This configuration comprises multiple sequential layers for classification, providing a deeper and more complex structure.
+* Sequential multi-layer as the classifier head (multi-layer for shortcut): This configuration comprises multiple linear layers for classification, providing a deeper and more complex structure.
 
 
 **3- Optimizer Algorithm:**
 
 I trained each architecture/head combination using either the Adam or SGD optimizer. Both optimizers utilized the CrossEntropyLoss function and were set with a fixed learning rate of 0.001 to ensure a fair comparison.
 
-* Adam is an adaptive learning rate optimization algorithm that is widely used for its simplicity and robustness. It adjusts the learning rate dynamically during training to improve convergence.
+* Adam: is an adaptive learning rate optimization algorithm that is widely used for its simplicity and robustness. It adjusts the learning rate dynamically during training to improve convergence.
 
-* SGD (Stochastic Gradient Descent) is a traditional optimization algorithm that updates the model parameters with the gradients of the loss function. It iteratively adjusts the weights with a fixed learning rate to minimize the loss.
+* SGD (Stochastic Gradient Descent): is a traditional optimization algorithm that updates the model parameters with the gradients of the loss function. It iteratively adjusts the weights with a fixed learning rate to minimize the loss.
 
 
 **4- Hardware platform:**
@@ -78,15 +78,15 @@ I trained the models on two types of hardware platforms:
 
 # Project Pipeline and Workflow
 
-The project consists of 4 core Python script files that collaborate to efficiently build, tune, and evaluate the models in a modular, structured and comparable manner:
+The project consists of 4 core Python script files that collaborate in the model development process in a structured and modular manner:
 
-* `utils.py`: Contains utility functions used throughout the project.
+* `utils.py`: contains reusable utility functions used throughout the project.
 
-* `build_dataset.py`: Includes code to load the dataset, preprocess the images, and split the data into training and validation sets.
+* `build_dataset.py`: implements code to load the dataset, preprocess the images, and split the data into training and validation sets.
 
-* `prepare_model.py`: Implements functions to initialize pretrained CNN architectures (ResNet18, VGG16, MobileNetV3) from PyTorch, modifying them for grayscale input and customized classification heads.
+* `prepare_model.py`: implements functions to initialize pretrained CNN architectures (ResNet18, VGG16, MobileNetV3) from PyTorch, modifying them for grayscale input and customized classification heads.
 
-* `train.py`: Implements the main training loop logic, handling command-line parameter parsing, model selection, data loading, training, validation, metric tracking, model saving, and result logging.
+* `train.py`: implements the main training loop logic, handling command-line parameter parsing, model selection, data loading, training, validation, metric tracking, model saving, and result logging.
 
 
 # Implementation  
@@ -106,11 +106,11 @@ Each of the following 6 notebooks focuses on training and evaluating a specific 
 * [6_Gel_Classifier_MobileNetV3.ipynb](6_Gel_Classifier_MobileNetV3.ipynb): This Jupyter notebook showcases the implementation of training a customized MobileNetV3 model on GPU. 
 
 
-## Model Training Process
+# Model Training Process
 
-To train the 24 models, I executed the `train.py` script 24 times, utilizing the 6 Jupyter notebooks mentioned earlier, and organizing four executions within each notebook. Each run involved specifying unique model configurations through command-line arguments and providing specific file paths.
+To train the 24 models, I executed the `train.py` script 24 times, utilizing the 6 Jupyter notebooks mentioned above. I organized 4 executions within each notebook, and each run involved specifying unique model configurations through command-line arguments and providing specific file paths.
 
-* Example:
+## Example:
 
 ```
 python train.py 
@@ -125,7 +125,7 @@ python train.py
   --results_file='/results.csv'
 ```
 
-* Command arguments:
+## Command arguments:
 
 | Name | Description | Default |
 |-|-|-|
@@ -145,7 +145,7 @@ python train.py
 
 # Model Evaluation
 
-The table below presents a summary of the evaluation results for all of the 24 models. (the same table as in the one in this [results.csv](results.csv) file)
+The table below summarizes the performance of the 24 models trained with different architectures and hyperparameters, each row in the table corresponds to a specific model configuration. The results were recorded in the [results.csv](results.csv) file generated at the end of training for each model. 
 
 
 | model_id | hardware_type | pretrained_model | classifier_head | opt_alg | training_time_mins | inference_time_secs | accuracy | precision | recall | conf_mat | roc_auc |
