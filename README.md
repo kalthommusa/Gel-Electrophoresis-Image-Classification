@@ -242,7 +242,7 @@ The high performance of model 16 can be attributed to several factors:
 
 3- the choice of the **SGD** optimizer contributes to the model's success, leading to better convergence and improved generalization.
 
-4- training the model on a GPU significantly accelerates the training process. This enables faster computation of the forward and backward passes during training, resulting in quicker convergence and reduced training time. This allows model 16 achieved the fastest training time of **19.08** seconds (equivalent to 0.318 minutes) compared to the CPU models.
+4- training the model on a **GPU** significantly accelerates the training process. This enables faster computation of the forward and backward passes during training, resulting in quicker convergence and reduced training time. This allows model 16 achieved the fastest training time of **19.08** seconds (equivalent to 0.318 minutes) compared to the CPU models.
 
 
 In conclusion, the outstanding performance of model **16** demonstrates the effectiveness and reliability of this configuration:
