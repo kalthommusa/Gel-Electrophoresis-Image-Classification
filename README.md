@@ -183,6 +183,10 @@ The table below summarizes the performance of the 24 models trained with differe
 ![alt text](imgs/heatmap-evaluation-metrics.png)
 
 
+## Bar Chart of Model Accuracies
+
+![alt text](imgs/model_accuracies.png)
+
 
 # Optimal Model Configuration and Performance
 
