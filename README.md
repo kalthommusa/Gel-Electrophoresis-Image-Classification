@@ -47,7 +47,6 @@ I trained each architecture/head combination using either the Adam or SGD optimi
 
 * SGD (Stochastic Gradient Descent): is a traditional optimization algorithm that updates the model parameters with the gradients of the loss function. It iteratively adjusts the weights with a fixed learning rate to minimize the loss.
 
-
 **4- Hardware platform:**
 
 I trained the models on two types of hardware platforms:
@@ -146,7 +145,7 @@ python train.py
 
 
 
-# Model Evaluation
+# Model Evaluation Results
 
 The table below summarizes the performance of the 24 models trained with different architectures and hyperparameters, each row in the table corresponds to a specific model configuration. The results were recorded in the [results.csv](results.csv) file generated at the end of training for each model. 
 
@@ -179,32 +178,37 @@ The table below summarizes the performance of the 24 models trained with differe
 | 24 | gpu | mobilenet-v3 | multi | sgd | 0.3393968224525451 | 5.609779596328735 | 72.73% | 82.35% | 72.73% | [[11, 0], [6, 5]] | 72.73% |
 
 
+## Model Performance Heatmap: Evaluation Metrics vs Model IDs
+
 ![alt text](imgs/heatmap-evaluation-metrics.png)
 
 
 
 # Optimal Model Configuration and Performance
 
-Among the 24 models trained with varying architectures and hyperparameters, the most effective configuration was observed in model (model_id: 16). This model, trained on *GPU*, utilized the *ResNet18* architecture, a *multi-layer* classifier head, and the Stochastic Gradient Descent (*SGD*) optimizer.
+Among the 24 models trained with varying architectures and hyperparameters, the most effective configuration was observed in model **16**. This model, trained on **GPU**, utilized the **ResNet18** architecture, a **multi-layer** classifier head, and the Stochastic Gradient Descent (**SGD**) optimizer.
 
-This model configuration led to the best result across all metrics for this task with:
+This model configuration led to the best result across all metrics for this binary classification task with:
 
-Accuracy: *95.45%*
-Precision: *95.83%*
-Recall: *95.45%*
+* Accuracy of **95.45%**, which indicates that the model correctly classified 95.45% of the gel electrophoresis images. 
 
-* The accuracy of 95.45% indicates that the model correctly classified 95.45% of the gel electrophoresis images. 
+* Precision of **95.83%**, which suggests that when the model predicted a positive result, it was correct 95.83% of the time. 
 
-* The precision of 95.83% suggests that when the model predicted a positive result, it was correct 95.83% of the time. 
+* Recall of **95.45%**, which indicates that the model captured 95.45% of the actual positive instances.
 
-* The recall of 95.45% indicates that the model captured 95.45% of the actual positive instances.
+* The confusion matrix shows 11 true positive classifications and 10 true negative classifications, with no false positives or false negatives. This is because the model was evaluated on a [test set](test_images/) containing 11 gel images (positive samples) and 11 not_gel images (negative samples).
 
-* The confusion matrix further illustrates the model's performance, showing 11 true positive classifications and 10 true negative classifications. There were no false positives or false negatives, indicating a high level of accuracy.
+The 11 true positive classifications mean the model correctly predicted all 11 gel images as belonging to the 'gel' class.
+
+The 10 true negative classifications indicate it correctly identified 10 of the 11 not_gel images as the 'not_gel' class.
+
+Importantly, there were no false positives or false negatives. This demonstrates the model's ability to accurately classify both positive (gel) and negative (not_gel) samples in the test set without any errors.
+
 
 ![alt text](imgs/confusion-matrix-gel-classifier-16.png)
 
 
-* The area under the ROC curve (ROC AUC) is 95.45%. This metric is commonly used to evaluate the overall performance of a binary classifier, with a higher value indicating better discrimination between positive and negative instances.
+* The area under the ROC curve (ROC AUC) is **95.45%**, indicating excellent discrimination between positive and negative instances. A higher ROC AUC value suggests that the model can effectively distinguish between the two classes, making it a reliable classifier.
 
 ![alt text](imgs/roc-curve-gel-classifier-16.png)
 
@@ -212,7 +216,7 @@ Recall: *95.45%*
 
 # Demo
 
-The following figures showcase the predictions of the ResNet18/multi-layer/SGD model on GPU (model_id: 16) for unseen gel images. During the evaluation of 11 test images, this model did an impressive job successfully classifying all of them.
+The following figures showcase the predictions of model **16** (the best model: ResNet18/multi-layer/SGD/on GPU) for unseen gel images. During the evaluation of 11 test images, this model did an impressive job successfully classifying all of them.
 
 
 ![alt text](imgs/prediction1.png)
@@ -228,11 +232,24 @@ The following figures showcase the predictions of the ResNet18/multi-layer/SGD m
 ![alt text](imgs/prediction11.png)
 
 
-This outstanding performance demonstrates the effectiveness and reliability of this configuration:
+# Conclusion and Key Findings
 
-* Hardware Type: *GPU*
-* Pretrained Model: *ResNet18*
-* Classifier Head: *Multi-Layer*
-* Optimization Algorithm: *SGD*
+The high performance of model 16 can be attributed to several factors: 
 
-and highlights the suitability of this model for real-world gel electrophoresis image classification tasks, offering potential benefits in scientific research.
+1- the **ResNet18** architecture provided a good feature extraction backbone suited for this image classification task, it enables the model to learn complex patterns and representations specific to gel electrophoresis images.
+
+2- the **multi-layer** classifier head provided a more complex, deeper classification capability compared to a single linear layer. By adding multiple linear layers on top of the ResNet18 backbone, it allowed the model to perform a more detailed decision-making process during classification.
+
+3- the choice of the **SGD** optimizer contributes to the model's success, leading to better convergence and improved generalization.
+
+4- training the model on a GPU significantly accelerates the training process. This enables faster computation of the forward and backward passes during training, resulting in quicker convergence and reduced training time. This allows model 16 achieved the fastest training time of **19.08** seconds (equivalent to 0.318 minutes) compared to the CPU models.
+
+
+In conclusion, the outstanding performance of model **16** demonstrates the effectiveness and reliability of this configuration:
+
+* Hardware Type: **GPU**
+* Pretrained Model: **ResNet18**
+* Classifier Head: **Multi-Layer**
+* Optimization Algorithm: **SGD**
+
+and highlights the suitability of the model for real-world gel electrophoresis image classification tasks, offering potential benefits in scientific research.
